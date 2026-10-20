@@ -6,7 +6,12 @@ A Lean 4 / mathlib formalization of foundational causal-set order theory. The li
 
 The current API includes finite Alexandrov intervals, interval cardinalities, links as cover relations, reconstruction of strict and reflexive precedence from link paths, transport and order-duality invariance, and finite interval-abundance counting identities. It is mathematical infrastructure: these elementary statements are not claimed as novel research.
 
-Isomorphism and order-duality invariance of interval and link observables does **not** imply that these observables completely determine an order. Order duality is formal order reversal, not a physical time orientation.
+The three-element partial order `CausalSet.Vee` and its order dual are not order-isomorphic,
+yet their entire interval-abundance functions agree. More generally, every duality-invariant
+observable of finite partial orders covered by the API agrees on this pair; no
+isomorphism-invariance assumption is needed for that conclusion. Invariance therefore does
+**not** ensure completeness. No minimality claim is made for this example. Order duality is
+formal reversal of `≤`, not a physical time orientation.
 
 The formalization **does not** establish faithful spacetime embeddings, dimension, sprinkling laws, physical volume, continuum convergence, Lorentzian metric reconstruction, or field dynamics. Additional geometric and probabilistic assumptions would be required.
 
@@ -39,6 +44,12 @@ The GitHub workflow is a change-aware weekly checkpoint, with manual dispatch. O
 - `CausalSet.intervalCard_lt_card` and `intervalAbundance_eq_zero_of_card_le`: finite support below the carrier cardinality.
 - `CausalSet.sum_intervalAbundance`: summing the abundances over that support counts all strict pairs.
 - `CausalSet.intervalAbundance_congr` and `intervalAbundance_toDual`: invariance under order isomorphism and order duality.
+- `CausalSet.isEmpty_orderIso_orderDual_of_isTop`: a preorder with a greatest element but no least element cannot be order-isomorphic to its dual.
+- `CausalSet.Vee`: a finite partial order with two incomparable minimal elements below a greatest element.
+- `CausalSet.Vee.isTop_top` and `not_isBot`: greatest-element and no-least-element witnesses.
+- `CausalSet.Vee.isEmpty_orderIso_orderDual`: structural non-isomorphism with the order dual.
+- `CausalSet.Vee.intervalAbundance_not_complete`: equality of interval-abundance functions on that non-isomorphic pair.
+- `CausalSet.Vee.dual_invariant_not_complete`: the corresponding obstruction for duality-invariant observables.
 
 Abundance counting uses `Fintype` and `DecidableLT` in addition to `Preorder` and
 `LocallyFiniteOrder`; it requires neither antisymmetry nor `DecidableEq`.
