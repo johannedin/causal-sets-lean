@@ -1,0 +1,5 @@
+Causal Sets Lean
+Copyright 2026 Johan Nedin
+
+This project depends on mathlib, which is developed by the Lean community and distributed under
+the Apache License 2.0. See https://github.com/leanprover-community/mathlib4.

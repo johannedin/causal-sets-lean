@@ -1,0 +1,103 @@
+name: Lean checkpoint
+
+on:
+  schedule:
+    # Weekly, at an off-peak minute. Scheduled workflows run from the default branch.
+    - cron: "17 3 * * 0"
+  workflow_dispatch:
+    inputs:
+      force:
+        description: Run the full verification even if main was already verified
+        required: false
+        type: boolean
+        default: false
+
+permissions:
+  actions: read
+  contents: read
+
+concurrency:
+  group: lean-checkpoint
+  cancel-in-progress: false
+
+jobs:
+  plan:
+    name: Check for changes
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      should_run: ${{ steps.changes.outputs.should_run }}
+    steps:
+      - name: Compare with last successful checkpoint
+        id: changes
+        env:
+          GH_TOKEN: ${{ github.token }}
+          FORCE: ${{ github.event_name == 'workflow_dispatch' && inputs.force }}
+        run: |
+          if [[ "$GITHUB_REF" != "refs/heads/main" ]]; then
+            echo "Checkpoints must run on main." >&2
+            exit 1
+          fi
+
+          if [[ "$FORCE" == "true" ]]; then
+            echo "should_run=true" >> "$GITHUB_OUTPUT"
+            echo "Full verification forced manually."
+            exit 0
+          fi
+
+          # A successful plan-only run is NOT a verified checkpoint. Find the
+          # newest successful run whose full verification job actually succeeded.
+          last_verified=""
+          runs="$(gh api --method GET \
+            "repos/${GITHUB_REPOSITORY}/actions/workflows/lean.yml/runs" \
+            -f status=success -f per_page=100)"
+          while IFS=$'\t' read -r run_id run_sha; do
+            [[ -n "$run_id" ]] || continue
+            verified="$(gh api --method GET \
+              "repos/${GITHUB_REPOSITORY}/actions/runs/${run_id}/jobs" \
+              -f per_page=100 \
+              --jq '[.jobs[] | select(.name == "Full Lean verification" and .conclusion == "success")] | length')"
+            if [[ "$verified" -gt 0 ]]; then
+              last_verified="$run_sha"
+              break
+            fi
+          done < <(echo "$runs" | jq -r '.workflow_runs[]
+            | select(.event == "schedule" or .event == "workflow_dispatch")
+            | [.id, .head_sha] | @tsv')
+
+          if [[ -z "$last_verified" || "$last_verified" != "$GITHUB_SHA" ]]; then
+            echo "should_run=true" >> "$GITHUB_OUTPUT"
+            echo "Repository changed since the last successful checkpoint."
+          else
+            echo "should_run=false" >> "$GITHUB_OUTPUT"
+            echo "No repository changes since $last_verified; skipping the Lean build."
+          fi
+
+  verify:
+    name: Full Lean verification
+    needs: plan
+    if: needs.plan.outputs.should_run == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Trust policy
+        run: bash scripts/check-trust.sh
+      - uses: leanprover/lean-action@24581d74d674803a25a81b10b059c5c0cdd344c6 # v1
+        env:
+          LEAN_NUM_THREADS: "1"
+        with:
+          # The restored `.lake` archive is about 2 GB and has repeatedly caused the hosted
+          # runner to disappear without logs. Mathlib's separate compiled-object cache remains on.
+          use-github-cache: false
+          use-mathlib-cache: true
+          build-args: "--wfail"
+          mk_all-check: true
+          mk_all-args: "--lib CausalSet"
+          leanchecker: true
+          leanchecker-args: "CausalSet"
+          axiom-audit: true
+          axiom-audit-allow: "propext,Classical.choice,Quot.sound"
+          axiom-audit-root: "CausalSet"
+      - name: Axiom audit
+        run: lake env lean Audit.lean
