@@ -27,7 +27,7 @@ Maintainers review and approve the proposed public text before creating the issu
 
 Substantive mathematical changes are researched, implemented, locally verified, and reviewed in a private development workspace **before** being proposed here. The public repository is the canonical accepted library, not a mirror of experimental development history.
 
-Private development is reviewed through a **review-only draft PR** against an immutable review-base branch. Reviewers record findings against an exact commit, and the owner separately authorizes promotion. The private review PR is closed without merging. The curated repository receives neither that PR history nor its review discussion.
+Private development is reviewed through a **review-only draft PR** against an immutable review-base branch. Reviewers record findings against an exact commit SHA, and the owner separately authorizes promotion. The SHA and decision are required; annotated review tags are optional and must never block publication. The private review PR is closed without merging. The curated repository receives neither that PR history nor its review discussion.
 
 For each approved contribution:
 
