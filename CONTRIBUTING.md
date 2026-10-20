@@ -27,9 +27,11 @@ Maintainers review and approve the proposed public text before creating the issu
 
 Substantive mathematical changes are researched, implemented, locally verified, and reviewed in a private development workspace **before** being proposed here. The public repository is the canonical accepted library, not a mirror of experimental development history.
 
+Private development is reviewed through a **review-only draft PR** against an immutable review-base branch. Reviewers record findings against an exact commit, and the owner separately authorizes promotion. The private review PR is closed without merging. The curated repository receives neither that PR history nor its review discussion.
+
 For each approved contribution:
 
-1. Prepare a minimal, self-contained public issue and a reviewed code/documentation patch. Do not copy private issue discussions, review comments, experimental commits, branch history, or private links.
+1. Prepare a minimal, self-contained public issue and a code/documentation patch approved through the private review-only PR process. Record the reviewed source SHA and the curated destination base SHA privately. Do not copy private issue discussions, review comments, experimental commits, branch history, or private links.
 2. Create a **fresh branch from the current curated `main`** and apply only the approved patch. Private repository branches must not be merged into this repository.
 3. Re-run `bash scripts/verify.sh` against the curated dependency baseline and report the actual result. Recheck the entire PR diff, title, description, and metadata for accidental disclosure.
 4. Obtain final mathematical and publication review; squash-merge the focused PR when approved. Preserve author credit, relevant published citations, and the existing AI-assistance disclosure.
