@@ -4,4 +4,5 @@ public import CausalSet.Abundance
 public import CausalSet.Basic
 public import CausalSet.Interval
 public import CausalSet.Link
+public import CausalSet.NonIdentifiability
 public import CausalSet.Transport
