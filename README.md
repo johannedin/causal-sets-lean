@@ -6,6 +6,8 @@ A Lean 4 / mathlib formalization of foundational causal-set order theory. The li
 
 The current API includes finite Alexandrov intervals, interval cardinalities, links as cover relations, and reconstruction of strict and reflexive precedence from link paths. It is mathematical infrastructure: these elementary statements are not claimed as novel research.
 
+Isomorphism and order-duality invariance of interval and link observables does **not** imply that these observables completely determine an order. Order duality is formal order reversal, not a physical time orientation.
+
 The formalization **does not** establish faithful spacetime embeddings, dimension, sprinkling laws, physical volume, continuum convergence, Lorentzian metric reconstruction, or field dynamics. Additional geometric and probabilistic assumptions would be required.
 
 ## Reproducible verification
@@ -29,6 +31,9 @@ The GitHub workflow is a change-aware weekly checkpoint, with manual dispatch. O
 - `CausalSet.isLink_iff_covBy`: identification with mathlib's cover relation.
 - `CausalSet.lt_iff_transGen_isLink`: strict order reconstructed from finite link paths.
 - `CausalSet.le_iff_reflTransGen_isLink`: reflexive precedence reconstructed for partial orders.
+- `CausalSet.alexandrovInterval_map` and `intervalCard_map`: interval transport and cardinality preservation under order isomorphisms.
+- `CausalSet.isLink_map`: link invariance under order isomorphisms.
+- `CausalSet.intervalCard_toDual` and `isLink_toDual`: interval-cardinality and link invariance under order duality.
 
 For a worked example, see the following use of the link equivalence in a locally finite partial order:
 
