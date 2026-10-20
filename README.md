@@ -4,7 +4,7 @@ A Lean 4 / mathlib formalization of foundational causal-set order theory. The li
 
 ## Scope
 
-The current API includes finite Alexandrov intervals, interval cardinalities, links as cover relations, and reconstruction of strict and reflexive precedence from link paths. It is mathematical infrastructure: these elementary statements are not claimed as novel research.
+The current API includes finite Alexandrov intervals, interval cardinalities, links as cover relations, reconstruction of strict and reflexive precedence from link paths, transport and order-duality invariance, and finite interval-abundance counting identities. It is mathematical infrastructure: these elementary statements are not claimed as novel research.
 
 Isomorphism and order-duality invariance of interval and link observables does **not** imply that these observables completely determine an order. Order duality is formal order reversal, not a physical time orientation.
 
