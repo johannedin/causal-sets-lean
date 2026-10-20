@@ -39,3 +39,9 @@ For each approved contribution:
 The private development record retains experiments and failed approaches; this repository's history records accepted releases. Passing tests does not itself authorize publication. If the destination baseline has changed, reconcile and re-review the patch rather than assuming the earlier verification remains valid.
 
 **Value standard:** Correct, maintainable formalization of established causal-set mathematics is a complete contribution. New theorems are optional.
+
+## Publication-quality PR verification records
+
+Before verification, confirm that the pinned Lean/Lake toolchain is available. Record transient environment failures and troubleshooting in the private development workspace, not as standalone public-facing PR status comments. The curated PR should present the final verified commit, mathematical scope, limitations, and successful reproducible verification evidence.
+
+Material mathematical errors, unresolved trust failures, or genuine reproducibility defects must still be disclosed and corrected before merge; this rule is not permission to conceal them. Review PR descriptions, comments, commit history, and visible edit histories before publication. Editing a GitHub comment or description does not necessarily remove its historical revisions.
