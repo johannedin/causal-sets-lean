@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it using the metadata below."
+title: "Causal Sets Lean"
+type: software
+authors:
+  - family-names: Nedin
+    given-names: Johan
+repository-code: "https://github.com/johannedin/causal-sets-lean"
+license: Apache-2.0
+version: 0.1.0

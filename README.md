@@ -1,0 +1,49 @@
+# Causal Sets Lean
+
+A Lean 4 / mathlib formalization of foundational causal-set order theory. The library develops elementary results for locally finite preorders and partial orders using existing mathlib abstractions.
+
+## Scope
+
+The current API includes finite Alexandrov intervals, interval cardinalities, links as cover relations, and reconstruction of strict and reflexive precedence from link paths. It is mathematical infrastructure: these elementary statements are not claimed as novel research.
+
+The formalization **does not** establish faithful spacetime embeddings, dimension, sprinkling laws, physical volume, continuum convergence, Lorentzian metric reconstruction, or field dynamics. Additional geometric and probabilistic assumptions would be required.
+
+## Reproducible verification
+
+The project pins Lean and mathlib to v4.35.0 and commits its dependency manifest. From a clean checkout with Lean/Elan and Git installed:
+
+```sh
+lake exe cache get
+bash scripts/verify.sh
+```
+
+The verification script runs the source trust policy, warnings-as-errors build, generated module coverage, independent kernel replay, named dependency checks, and project-wide axiom audit. The permitted foundational axioms are `propext`, `Classical.choice`, and `Quot.sound`. See `CONTRIBUTING.md` for requirements.
+
+The GitHub workflow is a change-aware weekly checkpoint, with manual dispatch. Ordinary changes must be verified locally; the hosted checkpoint is not automatically required for each pull request.
+
+## Public API
+
+- `CausalSet.alexandrovInterval x y`: finite open interval `Finset.Ioo x y`.
+- `CausalSet.intervalCard x y`: cardinality of that interval.
+- `CausalSet.IsLink x y`: strict precedence with no intervening element.
+- `CausalSet.isLink_iff_covBy`: identification with mathlib's cover relation.
+- `CausalSet.lt_iff_transGen_isLink`: strict order reconstructed from finite link paths.
+- `CausalSet.le_iff_reflTransGen_isLink`: reflexive precedence reconstructed for partial orders.
+
+For a worked example, see the following use of the link equivalence in a locally finite partial order:
+
+```lean
+import CausalSet
+
+example {α : Type*} [PartialOrder α] [LocallyFiniteOrder α]
+    {x y : α} (h : CausalSet.IsLink x y) : x < y :=
+  CausalSet.IsLink.lt h
+```
+
+## Provenance and limitations
+
+The project is AI-assisted in drafting and proof search. Accepted Lean results are expected to pass the documented verification checks; machine checking does not establish physical interpretation or scientific novelty. Bibliographic background is recorded in `REFERENCES.bib`.
+
+## License
+
+Apache-2.0; see `LICENSE` and `NOTICE`.
