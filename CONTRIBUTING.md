@@ -14,3 +14,11 @@ The gate includes source-policy scanning, Lean compilation, module coverage, ind
 The hosted Lean checkpoint is weekly or manually dispatched rather than automatically run on every pull request. Describe local verification in PRs and distinguish unverified proposals from checked results.
 
 This project uses AI assistance for drafting, navigation and proof search. All contributions must be independently reviewed for mathematical correctness, source attribution, scope, and novelty claims.
+
+## Issue curation and research scope
+
+This repository contains **curated, self-contained proposals** for general causal-set mathematics. New exploratory research is reviewed privately before publication. Public issues must not contain private research discussions, unpublished hypotheses, private repository links, or personal correspondence. Do not copy issue threads or comments from a private workspace.
+
+A research issue should state the precise mathematical goal and assumptions, existing literature and attribution, counterexamples or limitations, expected Lean deliverables, and explicit non-claims. Distinguish established infrastructure from possible novel results; acceptance into this repository is not a novelty endorsement.
+
+Maintainers review and approve the proposed public text before creating the issue. Publication of issues and PRs is a deliberate manual action, not an automatic transfer from a private repository. Legitimate citations to published research should be retained.
