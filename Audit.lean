@@ -46,3 +46,23 @@ their dedicated CI step to fail if they drift.
 /-- info: 'CausalSet.le_iff_reflTransGen_isLink' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms CausalSet.le_iff_reflTransGen_isLink
+
+/-- info: 'CausalSet.alexandrovInterval_map' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms CausalSet.alexandrovInterval_map
+
+/-- info: 'CausalSet.intervalCard_map' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms CausalSet.intervalCard_map
+
+/-- info: 'CausalSet.isLink_map' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms CausalSet.isLink_map
+
+/-- info: 'CausalSet.intervalCard_toDual' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms CausalSet.intervalCard_toDual
+
+/-- info: 'CausalSet.isLink_toDual' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms CausalSet.isLink_toDual
