@@ -34,6 +34,14 @@ The GitHub workflow is a change-aware weekly checkpoint, with manual dispatch. O
 - `CausalSet.alexandrovInterval_map` and `intervalCard_map`: interval transport and cardinality preservation under order isomorphisms.
 - `CausalSet.isLink_map`: link invariance under order isomorphisms.
 - `CausalSet.intervalCard_toDual` and `isLink_toDual`: interval-cardinality and link invariance under order duality.
+- `CausalSet.intervalAbundance α k`: number of ordered strict pairs with exactly `k` elements in their open interval.
+- `CausalSet.intervalAbundance_zero`: the zeroth abundance counts links.
+- `CausalSet.intervalCard_lt_card` and `intervalAbundance_eq_zero_of_card_le`: finite support below the carrier cardinality.
+- `CausalSet.sum_intervalAbundance`: summing the abundances over that support counts all strict pairs.
+- `CausalSet.intervalAbundance_congr` and `intervalAbundance_toDual`: invariance under order isomorphism and order duality.
+
+Abundance counting uses `Fintype` and `DecidableLT` in addition to `Preorder` and
+`LocallyFiniteOrder`; it requires neither antisymmetry nor `DecidableEq`.
 
 For a worked example, see the following use of the link equivalence in a locally finite partial order:
 
