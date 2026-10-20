@@ -1,25 +1,33 @@
 # General causal-set research roadmap
 
-This repository contains a reusable Lean formalization of elementary causal-set order theory. Research directions below are proposals, not established conclusions.
+This repository provides a reusable Lean 4 formalization of elementary causal-set order theory. The library's established mathematical results are useful as formalization infrastructure; no claim of mathematical novelty is made.
 
-## A1: foundational public library
-- Maintain a stable order/link API and explicit assumptions.
-- Keep reproducible kernel and axiom verification.
-- Add small, reviewed examples and documentation.
+## Implemented foundations
 
-## Finite causal sets and invariants
-- Prove transport of intervals and links under order isomorphisms.
-- Investigate invariance under order duality.
-- Prefer existing mathlib structures and small, independently useful theorems.
+- [x] Locally finite preorders, Alexandrov intervals, interval cardinalities, and links.
+- [x] Link-closure reconstruction of strict precedence, and reflexive precedence under the stated partial-order assumptions.
+- [x] Transport of intervals and links under order isomorphisms.
+- [x] Interval-cardinality and link invariance under order duality.
+- [x] Finite interval abundance, its link and strict-pair counting identities, and invariance under order isomorphisms and duality.
+- [x] Pinned Lean/mathlib environment, local proof and axiom audits, and a change-aware weekly/manual verification workflow.
 
-## Limits of reconstruction
-- Investigate explicit finite posets with identical summary statistics but distinct isomorphism types.
-- State precisely which invariants fail to identify a finite order.
-- Verify literature and minimality claims before asserting novelty.
+## Possible future extensions
 
-## Statistical reconstruction
-- Study fixed-size random two-dimensional orders as a tractable first model.
-- Separate deterministic combinatorial statements from probability assumptions.
-- Investigate exact finite-sample expectations and error bounds, with literature checks.
+The following are proposals, not accepted theorems or release requirements.
 
-No continuum, metric, or physical-field interpretation is implied by these milestones.
+### Limits of reconstruction
+
+- Formalize explicit non-isomorphic finite orders with identical selected counting invariants.
+- Distinguish invariance from completeness, and document exactly which information an observable does or does not retain.
+
+### Statistical reconstruction
+
+- Investigate finite random two-dimensional orders and exact permutation-statistic identities.
+- Introduce probabilistic and geometric assumptions explicitly rather than interpreting finite counts as spacetime volume without justification.
+
+### Library quality
+
+- Maintain minimal assumptions, stable mathlib-compatible APIs, executable examples, and transparent trust auditing.
+- Improve documentation and attribution as the library grows.
+
+No dimension, spacetime embedding, metric reconstruction, continuum limit, or physical field dynamics follows from the current formalization.
