@@ -9,6 +9,7 @@ This repository provides a reusable Lean 4 formalization of elementary causal-se
 - [x] Transport of intervals and links under order isomorphisms.
 - [x] Interval-cardinality and link invariance under order duality.
 - [x] Finite interval abundance, its link and strict-pair counting identities, and invariance under order isomorphisms and duality.
+- [x] A three-element pair of non-isomorphic order-dual finite partial orders with equal interval abundance, and a general obstruction for duality-invariant observables.
 - [x] Pinned Lean/mathlib environment, local proof and axiom audits, and a change-aware weekly/manual verification workflow.
 
 ## Possible future extensions
@@ -17,8 +18,8 @@ The following are proposals, not accepted theorems or release requirements.
 
 ### Limits of reconstruction
 
-- Formalize explicit non-isomorphic finite orders with identical selected counting invariants.
-- Distinguish invariance from completeness, and document exactly which information an observable does or does not retain.
+- Extend the existing three-element duality example with non-dual finite orders that share selected counting invariants.
+- Investigate stronger invariant families and document precisely what information they retain or fail to distinguish.
 
 ### Statistical reconstruction
 
