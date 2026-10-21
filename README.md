@@ -13,6 +13,10 @@ isomorphism-invariance assumption is needed for that conclusion. Invariance ther
 **not** ensure completeness. No minimality claim is made for this example. Order duality is
 formal reversal of `≤`, not a physical time orientation.
 
+The four-element orders `CausalSet.LamPt` and `CausalSet.TwoChains` strengthen this
+incompleteness example: their interval-abundance functions agree although they are neither
+order-isomorphic nor dual-isomorphic. An isolated element supplies the structural obstruction.
+
 The formalization **does not** establish faithful spacetime embeddings, dimension, sprinkling laws, physical volume, continuum convergence, Lorentzian metric reconstruction, or field dynamics. Additional geometric and probabilistic assumptions would be required.
 
 ## Reproducible verification
@@ -50,6 +54,9 @@ The GitHub workflow is a change-aware weekly checkpoint, with manual dispatch. O
 - `CausalSet.Vee.isEmpty_orderIso_orderDual`: structural non-isomorphism with the order dual.
 - `CausalSet.Vee.intervalAbundance_not_complete`: equality of interval-abundance functions on that non-isomorphic pair.
 - `CausalSet.Vee.dual_invariant_not_complete`: the corresponding obstruction for duality-invariant observables.
+- `CausalSet.IsIsolated`, `IsIsolated.map`, and `isIsolated_toDual_iff`: isolated elements and their invariance under order isomorphism and order duality.
+- `CausalSet.isEmpty_orderIso_of_isIsolated`: an isolated-element obstruction to ordinary and dual order isomorphisms.
+- `CausalSet.LamPt`, `TwoChains`, and `intervalAbundance_not_complete_nonDual`: a four-element equal-abundance pair that is neither isomorphic nor dual-isomorphic.
 
 Abundance counting uses `Fintype` and `DecidableLT` in addition to `Preorder` and
 `LocallyFiniteOrder`; it requires neither antisymmetry nor `DecidableEq`.
