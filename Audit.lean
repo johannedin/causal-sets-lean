@@ -8,6 +8,7 @@ module
 
 import CausalSet
 import Mathlib.Order.Interval.Finset.Fin
+import Mathlib.Tactic.NormNum
 
 /-!
 # Axiom audit
@@ -159,6 +160,26 @@ end IntervalAbundanceExamples
 #guard_msgs in
 #print axioms CausalSet.intervalAbundance_antichainCount_not_complete_nonDual
 
+/-- info: 'CausalSet.RandomTwoOrder.windowCount_spec' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms CausalSet.RandomTwoOrder.windowCount_spec
+
+/-- info: 'CausalSet.RandomTwoOrder.sum_intervalAbundance_twoOrder' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms CausalSet.RandomTwoOrder.sum_intervalAbundance_twoOrder
+
+/-- info: 'CausalSet.RandomTwoOrder.sum_links_twoOrder' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms CausalSet.RandomTwoOrder.sum_links_twoOrder
+
+/-- info: 'CausalSet.RandomTwoOrder.sum_relations_twoOrder' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms CausalSet.RandomTwoOrder.sum_relations_twoOrder
+
+/-- info: 'CausalSet.RandomTwoOrder.sum_bdCombination2_twoOrder' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms CausalSet.RandomTwoOrder.sum_bdCombination2_twoOrder
+
 /-! ## Three-element non-identifiability examples -/
 
 section NonIdentifiabilityExamples
@@ -206,3 +227,24 @@ example : antichainCount NPlus 2 = 6 := by decide
 example : intervalAbundance NPlus 0 = 4 := by decide
 
 end AntichainNonIdentifiabilityExamples
+
+/-! ## Finite random two-order examples -/
+
+section RandomTwoOrderExamples
+
+open CausalSet CausalSet.RandomTwoOrder
+
+example : windowCount 4 1 (0 : Fin 4) (3 : Fin 4) = 4 := by decide
+
+example :
+    ∑ σ : Equiv.Perm (Fin 3), (intervalAbundance (TwoOrder σ) 0 : ℚ) = 8 := by
+  norm_num [sum_intervalAbundance_twoOrder_closed, harmonic_succ, Nat.factorial]
+
+example :
+    ∑ σ : Equiv.Perm (Fin 3), bdCombination2 (TwoOrder σ) = 6 := by
+  simpa [Nat.factorial] using sum_bdCombination2_twoOrder (N := 3) (by decide)
+
+example :
+    ∑ σ : Equiv.Perm (Fin 4), bdCombination2 (TwoOrder σ) = 24 := by decide +kernel
+
+end RandomTwoOrderExamples
