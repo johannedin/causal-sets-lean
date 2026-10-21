@@ -9,8 +9,9 @@ the Lean theorems.
 
 Eppstein and Simons [EppsteinSimons2013] generate a two-dimensional partial order from a
 uniform permutation by intersecting the order of positions with the order of permutation
-values. This is the construction represented by `CausalSet.TwoOrder`. They compute the
-expected number of Hasse-diagram edges as
+values. This is the construction represented by `CausalSet.TwoOrder`. They show that an
+element `j` positions above another covers it with probability `1/(j+1)`, so the expected
+number of Hasse-diagram edges is a harmonic-number sum. Summing gives
 
 ```text
 sum (H_k - 1), k = 1,...,N = (N + 1) H_N - 2N.
@@ -23,10 +24,10 @@ it does not depend on the published proof.
 
 ## Interval abundances and the two-dimensional combination
 
-Glaser and Surya [GlaserSurya2013] define `N_m` as the number of order intervals with
-exactly `m` elements between their endpoints, derive ensemble expectations for
-sprinklings into Minkowski Alexandrov intervals, and record the two-dimensional
-combination `N - 2N_0 + 4N_1 - 2N_2`. Benincasa, Dowker, and Schmitzer
+Glaser and Surya [GlaserSurya2013] study expectations of interval abundances `N_m` for
+sprinklings into Minkowski Alexandrov intervals. The two-dimensional Benincasa–Dowker
+action is built from the combination `N - 2N_0 + 4N_1 - 2N_2`, with `N_m` counting
+intervals with `m` interior elements. Benincasa, Dowker, and Schmitzer
 [BenincasaDowkerSchmitzer2011] study the associated random discrete action in finite-volume
 two-dimensional Lorentzian regions and its mean for several geometries.
 
