@@ -133,6 +133,14 @@ end IntervalAbundanceExamples
 #guard_msgs in
 #print axioms CausalSet.Vee.dual_invariant_not_complete
 
+/-- info: 'CausalSet.isEmpty_orderIso_of_isIsolated' depends on axioms: [propext, Quot.sound] -/
+#guard_msgs in
+#print axioms CausalSet.isEmpty_orderIso_of_isIsolated
+
+/-- info: 'CausalSet.intervalAbundance_not_complete_nonDual' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms CausalSet.intervalAbundance_not_complete_nonDual
+
 /-! ## Three-element non-identifiability examples -/
 
 section NonIdentifiabilityExamples
@@ -150,3 +158,18 @@ example : intervalAbundance Veeᵒᵈ = intervalAbundance Vee ∧ IsEmpty (Vee �
     (fun _ _ _ _ _ => funext intervalAbundance_toDual)
 
 end NonIdentifiabilityExamples
+
+/-! ## Four-element non-dual non-identifiability examples -/
+
+section NonDualNonIdentifiabilityExamples
+
+open CausalSet
+
+example : Fintype.card LamPt = 4 := by decide
+example : Fintype.card TwoChains = 4 := by decide
+example : intervalAbundance LamPt 0 = 2 := by decide
+example : intervalAbundance TwoChains 0 = 2 := by decide
+example : intervalAbundance LamPt 1 = 0 := by decide
+example : intervalAbundance TwoChains 1 = 0 := by decide
+
+end NonDualNonIdentifiabilityExamples
