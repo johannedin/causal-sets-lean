@@ -141,6 +141,24 @@ end IntervalAbundanceExamples
 #guard_msgs in
 #print axioms CausalSet.intervalAbundance_not_complete_nonDual
 
+/-- info: 'CausalSet.antichainCount_congr' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms CausalSet.antichainCount_congr
+
+/-- info: 'CausalSet.antichainCount_toDual' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms CausalSet.antichainCount_toDual
+
+/-- info: 'CausalSet.antichainCount_eq_zero_of_card_lt' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms CausalSet.antichainCount_eq_zero_of_card_lt
+
+/-- info: 'CausalSet.intervalAbundance_antichainCount_not_complete_nonDual' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound] -/
+#guard_msgs in
+#print axioms CausalSet.intervalAbundance_antichainCount_not_complete_nonDual
+
 /-! ## Three-element non-identifiability examples -/
 
 section NonIdentifiabilityExamples
@@ -173,3 +191,18 @@ example : intervalAbundance LamPt 1 = 0 := by decide
 example : intervalAbundance TwoChains 1 = 0 := by decide
 
 end NonDualNonIdentifiabilityExamples
+
+/-! ## Five-element antichain-strengthened non-identifiability examples -/
+
+section AntichainNonIdentifiabilityExamples
+
+open CausalSet
+
+example : Fintype.card NPlus = 5 := by decide
+example : Fintype.card ButterflyPt = 5 := by decide
+example : antichainCount NPlus 3 = 2 := by decide
+example : antichainCount ButterflyPt 3 = 2 := by decide
+example : antichainCount NPlus 2 = 6 := by decide
+example : intervalAbundance NPlus 0 = 4 := by decide
+
+end AntichainNonIdentifiabilityExamples

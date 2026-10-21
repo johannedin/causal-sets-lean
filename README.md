@@ -17,6 +17,10 @@ The four-element orders `CausalSet.LamPt` and `CausalSet.TwoChains` strengthen t
 incompleteness example: their interval-abundance functions agree although they are neither
 order-isomorphic nor dual-isomorphic. An isolated element supplies the structural obstruction.
 
+The five-element orders `CausalSet.ButterflyPt` and `CausalSet.NPlus` show that interval
+abundance together with antichain counts by size still does not determine a finite order up
+to isomorphism or duality.
+
 The formalization **does not** establish faithful spacetime embeddings, dimension, sprinkling laws, physical volume, continuum convergence, Lorentzian metric reconstruction, or field dynamics. Additional geometric and probabilistic assumptions would be required.
 
 ## Reproducible verification
@@ -57,9 +61,14 @@ The GitHub workflow is a change-aware weekly checkpoint, with manual dispatch. O
 - `CausalSet.IsIsolated`, `IsIsolated.map`, and `isIsolated_toDual_iff`: isolated elements and their invariance under order isomorphism and order duality.
 - `CausalSet.isEmpty_orderIso_of_isIsolated`: an isolated-element obstruction to ordinary and dual order isomorphisms.
 - `CausalSet.LamPt`, `TwoChains`, and `intervalAbundance_not_complete_nonDual`: a four-element equal-abundance pair that is neither isomorphic nor dual-isomorphic.
+- `CausalSet.antichainCount α k`: number of `k`-element antichains in a finite order.
+- `CausalSet.antichainCount_congr` and `antichainCount_toDual`: invariance under order isomorphism and order duality.
+- `CausalSet.antichainCount_eq_zero_of_card_lt`: finite support of antichain counts.
+- `CausalSet.NPlus`, `ButterflyPt`, and `intervalAbundance_antichainCount_not_complete_nonDual`: a five-element pair with equal interval abundance and antichain counts that is neither isomorphic nor dual-isomorphic.
 
 Abundance counting uses `Fintype` and `DecidableLT` in addition to `Preorder` and
 `LocallyFiniteOrder`; it requires neither antisymmetry nor `DecidableEq`.
+Antichain counting uses only `LE` together with `Fintype`, `DecidableEq`, and `DecidableLE`.
 
 For a worked example, see the following use of the link equivalence in a locally finite partial order:
 
