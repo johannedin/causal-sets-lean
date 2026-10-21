@@ -43,6 +43,13 @@ def intervalAbundance (α : Type*) [Preorder α] [LocallyFiniteOrder α] [Fintyp
     [DecidableLT α] (k : ℕ) : ℕ :=
   #{p : α × α | p.1 < p.2 ∧ intervalCard p.1 p.2 = k}
 
+/-- The two-dimensional Benincasa--Dowker interval combination
+`N - 2N₀ + 4N₁ - 2N₂`; its identification with the BD action is not formalized. -/
+def bdCombination2 (α : Type*) [Preorder α] [LocallyFiniteOrder α] [Fintype α]
+    [DecidableLT α] : ℤ :=
+  Fintype.card α - 2 * intervalAbundance α 0 + 4 * intervalAbundance α 1 -
+    2 * intervalAbundance α 2
+
 variable [Fintype α]
 variable [Preorder β] [LocallyFiniteOrder β] [Fintype β] [DecidableLT β]
 

@@ -12,6 +12,7 @@ This repository provides a reusable Lean 4 formalization of elementary causal-se
 - [x] A three-element pair of non-isomorphic order-dual finite partial orders with equal interval abundance, and a general obstruction for duality-invariant observables.
 - [x] A four-element pair of finite partial orders with equal interval abundance that are neither order-isomorphic nor dual-isomorphic, via a reusable isolated-element obstruction.
 - [x] A five-element pair of finite partial orders with equal interval abundance and equal antichain counts by size that are neither order-isomorphic nor dual-isomorphic.
+- [x] Exact finite permutation sums for interval abundances, links, strict relations, and the two-dimensional Benincasa--Dowker interval combination in random two-orders.
 - [x] Pinned Lean/mathlib environment, local proof and axiom audits, and a change-aware weekly/manual verification workflow.
 
 ## Possible future extensions
@@ -25,8 +26,8 @@ The following are proposals, not accepted theorems or release requirements.
 
 ### Statistical reconstruction
 
-- Investigate finite random two-dimensional orders and exact permutation-statistic identities.
-- Introduce probabilistic and geometric assumptions explicitly rather than interpreting finite counts as spacetime volume without justification.
+- Formalize probabilistic or geometric bridges only with their sampling, measurability, and embedding assumptions explicit.
+- Investigate variance, asymptotics, or higher-dimensional models separately from the accepted finite two-order identities.
 
 ### Library quality
 

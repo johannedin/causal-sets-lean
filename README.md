@@ -4,7 +4,7 @@ A Lean 4 / mathlib formalization of foundational causal-set order theory. The li
 
 ## Scope
 
-The current API includes finite Alexandrov intervals, interval cardinalities, links as cover relations, reconstruction of strict and reflexive precedence from link paths, transport and order-duality invariance, and finite interval-abundance counting identities. It is mathematical infrastructure: these elementary statements are not claimed as novel research.
+The current API includes finite Alexandrov intervals, interval cardinalities, links as cover relations, reconstruction of strict and reflexive precedence from link paths, transport and order-duality invariance, finite interval-abundance counting identities, and exact finite sums over permutation-generated two-dimensional orders. It is mathematical infrastructure: these elementary statements are not claimed as novel research.
 
 The three-element partial order `CausalSet.Vee` and its order dual are not order-isomorphic,
 yet their entire interval-abundance functions agree. More generally, every duality-invariant
@@ -20,6 +20,22 @@ order-isomorphic nor dual-isomorphic. An isolated element supplies the structura
 The five-element orders `CausalSet.ButterflyPt` and `CausalSet.NPlus` show that interval
 abundance together with antichain counts by size still does not determine a finite order up
 to isomorphism or duality.
+
+For a permutation `σ : Equiv.Perm (Fin N)`, `CausalSet.TwoOrder σ` intersects the usual
+order on positions with the order of their images under `σ`. The library proves exact sums
+over all `N!` permutations for interval abundances, links, strict relations, and the
+two-dimensional Benincasa--Dowker interval combination. These are finite combinatorial
+identities; no probability space is defined in Lean.
+
+The **fixed-cardinality diamond correspondence** is an unformalized sampling assumption:
+condition a homogeneous Poisson sprinkling into a two-dimensional Minkowski Alexandrov
+diamond on exactly `N` points, use affine null coordinates, assume the almost-sure absence
+of coordinate ties, and sort by one coordinate. The ranks of the other coordinate then
+give a uniform permutation, whose induced causal order is represented by `TwoOrder`.
+The library does not prove this measure-theoretic or geometric bridge. In particular, the
+finite formulas do not by themselves establish a sprinkling law, faithful embedding,
+dimension estimator, continuum limit, curvature result, or physical action. See
+[`docs/LITERATURE.md`](docs/LITERATURE.md) for the precise literature relationship.
 
 The formalization **does not** establish faithful spacetime embeddings, dimension, sprinkling laws, physical volume, continuum convergence, Lorentzian metric reconstruction, or field dynamics. Additional geometric and probabilistic assumptions would be required.
 
@@ -48,6 +64,7 @@ The GitHub workflow is a change-aware weekly checkpoint, with manual dispatch. O
 - `CausalSet.isLink_map`: link invariance under order isomorphisms.
 - `CausalSet.intervalCard_toDual` and `isLink_toDual`: interval-cardinality and link invariance under order duality.
 - `CausalSet.intervalAbundance α k`: number of ordered strict pairs with exactly `k` elements in their open interval.
+- `CausalSet.bdCombination2 α`: the interval combination `N - 2N₀ + 4N₁ - 2N₂`; its identification with a physical action is not formalized.
 - `CausalSet.intervalAbundance_zero`: the zeroth abundance counts links.
 - `CausalSet.intervalCard_lt_card` and `intervalAbundance_eq_zero_of_card_le`: finite support below the carrier cardinality.
 - `CausalSet.sum_intervalAbundance`: summing the abundances over that support counts all strict pairs.
@@ -65,6 +82,12 @@ The GitHub workflow is a change-aware weekly checkpoint, with manual dispatch. O
 - `CausalSet.antichainCount_congr` and `antichainCount_toDual`: invariance under order isomorphism and order duality.
 - `CausalSet.antichainCount_eq_zero_of_card_lt`: finite support of antichain counts.
 - `CausalSet.NPlus`, `ButterflyPt`, and `intervalAbundance_antichainCount_not_complete_nonDual`: a five-element pair with equal interval abundance and antichain counts that is neither isomorphic nor dual-isomorphic.
+- `CausalSet.TwoOrder σ`: the finite order obtained by intersecting position order with the order induced by a permutation.
+- `CausalSet.windowCount` and `CausalSet.RandomTwoOrder.windowCount_spec`: exact counting of permutations with a prescribed two-order interval window.
+- `CausalSet.RandomTwoOrder.sum_intervalAbundance_twoOrder` and `sum_intervalAbundance_twoOrder_closed`: exact finite sums of interval abundances, including a harmonic-number closed form.
+- `CausalSet.RandomTwoOrder.sum_links_twoOrder`: the exact finite sum of link counts over all permutations.
+- `CausalSet.RandomTwoOrder.sum_relations_twoOrder`: the exact ordering-fraction sum over all permutations.
+- `CausalSet.RandomTwoOrder.sum_bdCombination2_twoOrder`: the interval-combination sum for every nonempty carrier.
 
 Abundance counting uses `Fintype` and `DecidableLT` in addition to `Preorder` and
 `LocallyFiniteOrder`; it requires neither antisymmetry nor `DecidableEq`.
@@ -82,7 +105,7 @@ example {α : Type*} [PartialOrder α] [LocallyFiniteOrder α]
 
 ## Provenance and limitations
 
-The project is AI-assisted in drafting and proof search. Accepted Lean results are expected to pass the documented verification checks; machine checking does not establish physical interpretation or scientific novelty. Bibliographic background is recorded in `REFERENCES.bib`.
+The project is AI-assisted in drafting and proof search. Accepted Lean results are expected to pass the documented verification checks; machine checking does not establish physical interpretation or scientific novelty. Bibliographic background is recorded in `REFERENCES.bib`, with claim-level context in [`docs/LITERATURE.md`](docs/LITERATURE.md).
 
 ## License
 
