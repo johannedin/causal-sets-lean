@@ -10,6 +10,7 @@ authors:
 repository-code: "https://github.com/johannedin/causal-sets-lean"
 license: Apache-2.0
 version: 0.2.0
+date-released: 2026-10-24
 abstract: >-
   A Lean 4 and mathlib library for foundational finite causal-set order theory,
   finite non-identifiability examples, exact deterministic identities for
