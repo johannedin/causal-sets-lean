@@ -37,6 +37,13 @@ finite formulas do not by themselves establish a sprinkling law, faithful embedd
 dimension estimator, continuum limit, curvature result, or physical action. See
 [`docs/LITERATURE.md`](docs/LITERATURE.md) for the precise literature relationship.
 
+The library also provides a general correspondence-distance API for finite labelled
+families of real-valued pseudometric kernels. A single correspondence controls every label.
+On nonempty compact metric spaces whose ambient metrics are the pointwise maxima of the
+labelled kernels, zero joint distance is equivalent to a bijection preserving every
+kernel. This is abstract metric infrastructure: it does not identify physical spacetimes,
+establish geometric reconstruction, or supply statistical convergence rates.
+
 The formalization **does not** establish faithful spacetime embeddings, dimension, sprinkling laws, physical volume, continuum convergence, Lorentzian metric reconstruction, or field dynamics. Additional geometric and probabilistic assumptions would be required.
 
 ## Reproducible verification
@@ -88,6 +95,12 @@ The GitHub workflow is a change-aware weekly checkpoint, with manual dispatch. O
 - `CausalSet.RandomTwoOrder.sum_links_twoOrder`: the exact finite sum of link counts over all permutations.
 - `CausalSet.RandomTwoOrder.sum_relations_twoOrder`: the exact ordering-fraction sum over all permutations.
 - `CausalSet.RandomTwoOrder.sum_bdCombination2_twoOrder`: the interval-combination sum for every nonempty carrier.
+- `LabelledCorrespondence.KernelFamily`: a finite labelled family of real-valued pseudometric kernels.
+- `LabelledCorrespondence.Correspondence`: a relation with surjective coordinate projections.
+- `LabelledCorrespondence.componentDistortion`, `jointDistortion`, and `jointDistance`: componentwise and common-correspondence distortions and their joint distance.
+- `LabelledCorrespondence.jointDistance_symm` and `jointDistance_triangle`: symmetry and the triangle inequality.
+- `LabelledCorrespondence.Preserves`, `jointDistance_congr_left`, and `jointDistance_congr_right`: preservation and invariance under label-preserving equivalences.
+- `LabelledCorrespondence.jointDistance_eq_zero_iff_exists_preserving_equiv`: the compact zero-distance characterization under explicit finite-label and maximum-metric hypotheses.
 
 Abundance counting uses `Fintype` and `DecidableLT` in addition to `Preorder` and
 `LocallyFiniteOrder`; it requires neither antisymmetry nor `DecidableEq`.
