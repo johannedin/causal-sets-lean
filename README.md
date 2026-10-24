@@ -127,8 +127,9 @@ two-dimensional diamonds*, Zenodo (2026), version 1.0.
 [doi:10.5281/zenodo.23624630](https://doi.org/10.5281/zenodo.23624630).
 
 The preprint develops statistical and geometric results beyond this library. The Lean code
-formalizes the general labelled-correspondence foundations used by that work, but it does
-**not** formalize the complete preprint, its sampling results, or its reconstruction theorems.
+formalizes the preprint's compact labelled zero-distance lemma, with explicit nonempty-label
+and nonempty-space hypotheses. It does **not** formalize any other result in the preprint,
+including its sampling results or reconstruction theorems.
 
 For software citation metadata, see [`CITATION.cff`](CITATION.cff). Release history and the
 scope of each version are recorded in [`CHANGELOG.md`](CHANGELOG.md).
