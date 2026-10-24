@@ -180,6 +180,43 @@ end IntervalAbundanceExamples
 #guard_msgs in
 #print axioms CausalSet.RandomTwoOrder.sum_bdCombination2_twoOrder
 
+/-! ## Labelled correspondence distance -/
+
+/-- info: 'LabelledCorrespondence.jointDistance_triangle' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms LabelledCorrespondence.jointDistance_triangle
+
+/-- info: 'LabelledCorrespondence.jointDistance_congr_left' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms LabelledCorrespondence.jointDistance_congr_left
+
+/-- info: 'LabelledCorrespondence.exists_jointDistortion_eq_zero_of_jointDistance_eq_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound] -/
+#guard_msgs in
+#print axioms LabelledCorrespondence.exists_jointDistortion_eq_zero_of_jointDistance_eq_zero
+
+/-- info: 'LabelledCorrespondence.jointDistance_eq_zero_iff_exists_preserving_equiv' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound] -/
+#guard_msgs in
+#print axioms LabelledCorrespondence.jointDistance_eq_zero_iff_exists_preserving_equiv
+
+section LabelledCorrespondenceExamples
+
+open LabelledCorrespondence
+
+/-- A concrete two-label family whose kernels vanish identically. -/
+noncomputable def zeroKernelFamily : KernelFamily (Fin 2) (Fin 3) := fun _ => ⊥
+
+example : Preserves zeroKernelFamily zeroKernelFamily (Equiv.refl (Fin 3)) := by
+  simp [Preserves, zeroKernelFamily]
+
+example : jointDistance zeroKernelFamily zeroKernelFamily = 0 :=
+  jointDistance_self zeroKernelFamily
+
+end LabelledCorrespondenceExamples
+
 /-! ## Three-element non-identifiability examples -/
 
 section NonIdentifiabilityExamples
