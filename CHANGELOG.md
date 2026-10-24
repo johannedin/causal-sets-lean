@@ -2,10 +2,9 @@
 
 All notable changes to this project are documented here.
 
-## [0.2.0] — release candidate
+## [0.2.0] — 2026-10-24
 
-The release date will be assigned when the maintainer publishes the GitHub Release. This
-candidate keeps Lean 4.35.0 and the existing mathlib pin.
+This release keeps Lean 4.35.0 and the existing mathlib pin.
 
 ### Added
 
