@@ -29,3 +29,6 @@ references:
         orcid: "https://orcid.org/0009-0006-1392-7181"
     date-published: 2026-10-24
     doi: "10.5281/zenodo.23624630"
+    publisher:
+      name: Zenodo
+    version: "1.0"
