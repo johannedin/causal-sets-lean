@@ -1,0 +1,30 @@
+{
+  "creators": [
+    {
+      "name": "Nedin, Johan",
+      "orcid": "0009-0006-1392-7181",
+      "affiliation": "Independent Researcher"
+    }
+  ],
+  "title": "Causal Sets Lean",
+  "description": "A Lean 4 and mathlib library for foundational finite causal-set order theory, finite non-identifiability examples, exact deterministic identities for permutation-generated two-orders, and labelled correspondence distances.",
+  "version": "0.2.0",
+  "access_right": "open",
+  "related_identifiers": [
+    {
+      "identifier": "https://doi.org/10.5281/zenodo.23624630",
+      "relation": "isSupplementTo",
+      "resource_type": "publication-preprint"
+    }
+  ],
+  "keywords": [
+    "Lean",
+    "causal sets",
+    "order theory",
+    "formalized mathematics",
+    "labelled correspondences"
+  ],
+  "license": "apache-2.0",
+  "upload_type": "software",
+  "language": "eng"
+}
