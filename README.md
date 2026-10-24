@@ -120,6 +120,19 @@ example {α : Type*} [PartialOrder α] [LocallyFiniteOrder α]
 
 The project is AI-assisted in drafting and proof search. Accepted Lean results are expected to pass the documented verification checks; machine checking does not establish physical interpretation or scientific novelty. Bibliographic background is recorded in `REFERENCES.bib`, with claim-level context in [`docs/LITERATURE.md`](docs/LITERATURE.md).
 
+## Related publication
+
+Johan Nedin, *Finite-sample consistency of joint causal profiles in bounded-density
+two-dimensional diamonds*, Zenodo (2026), version 1.0.
+[doi:10.5281/zenodo.23624630](https://doi.org/10.5281/zenodo.23624630).
+
+The preprint develops statistical and geometric results beyond this library. The Lean code
+formalizes the general labelled-correspondence foundations used by that work, but it does
+**not** formalize the complete preprint, its sampling results, or its reconstruction theorems.
+
+For software citation metadata, see [`CITATION.cff`](CITATION.cff). Release history and the
+scope of each version are recorded in [`CHANGELOG.md`](CHANGELOG.md).
+
 ## License
 
 Apache-2.0; see `LICENSE` and `NOTICE`.
