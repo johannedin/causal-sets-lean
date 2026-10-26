@@ -15,18 +15,23 @@ This repository provides a reusable Lean 4 formalization of elementary causal-se
 - [x] Exact finite permutation sums for interval abundances, links, strict relations, and the two-dimensional Benincasa--Dowker interval combination in random two-orders.
 - [x] Joint correspondence distance for finite labelled pseudometric families, including symmetry, the triangle inequality, equivalence invariance, and a compact zero-distance characterization under explicit maximum-metric hypotheses.
 - [x] Finite Pauli–Jordan relation-sign matrices: the injective two-coordinate sign identity, real antisymmetry, Hermitian imaginary multiple, cardinality normalization, and relabelling invariance.
+- [x] Exact finite relative-permutation and Fourier/Cayley representation: antiperiodic shift, two-sided geometric inverse, complete twisted Fourier basis and cotangent eigenvalue identities for the normalized one-coordinate sign operator.
 - [x] Pinned Lean/mathlib environment, local proof and axiom audits, and a change-aware weekly/manual verification workflow.
 
+## Availability and evidence status
+
+The finite Pauli–Jordan foundation and Fourier/Cayley modules are implemented and
+kernel-verified on `main` (PRs #17 and #19); neither is included in the last tagged
+release, v0.2.0. The implemented list describes `main`, not the contents of every tag.
+Consult the changelog and the selected tag for release-specific availability.
+
+Privately formalized results are not part of the public API until separately curated
+and merged. Paper-proved results are not Lean-formalized unless an exact checked
+declaration is identified. Numerical support and conjectures are not proofs. In
+particular, no Cauchy bulk convergence, probabilistic spectral convergence, continuum
+operator or Sorkin–Johnston convergence theorem is supplied by the finite modules.
+
 ## Possible future extensions
-
-### Staged finite Fourier/Cayley contribution
-
-The current contribution adds exact relative-permutation reduction, an antiperiodic
-shift, its geometric-sum inverse and corrected Cayley identity, and a complete twisted
-Fourier basis with exact cotangent eigenvalues for the normalized one-coordinate sign
-operator. It remains **staged for independent exact-commit review and owner merge
-approval**, not a merged or released milestone. Move this item to implemented foundations
-only after the PR is actually merged. No probabilistic or continuum claim is included.
 
 The following are proposals, not accepted theorems or release requirements.
 
