@@ -9,6 +9,8 @@ module
 import CausalSet
 import Mathlib.Order.Interval.Finset.Fin
 import Mathlib.Tactic.NormNum
+import Mathlib.Tactic.FinCases
+import Mathlib.MeasureTheory.Measure.Dirac.Basic
 
 /-!
 # Axiom audit
@@ -483,3 +485,118 @@ example :
   by simpa using signOperator_mulVec_vec 1 (0 : Fin 2)
 
 end PauliJordanFourierExamples
+
+/-! ## L² causal-profile algebra -/
+
+/-- info: 'CausalSet.CausalProfile.profile_ae' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms CausalSet.CausalProfile.profile_ae
+
+/-- info: 'CausalSet.CausalProfile.norm_indicator_sub_sq' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms CausalSet.CausalProfile.norm_indicator_sub_sq
+
+/-- info: 'CausalSet.CausalProfile.componentA_eq' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms CausalSet.CausalProfile.componentA_eq
+
+/-- info: 'CausalSet.CausalProfile.componentB_eq' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms CausalSet.CausalProfile.componentB_eq
+
+/-- info: 'CausalSet.CausalProfile.componentC_eq' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms CausalSet.CausalProfile.componentC_eq
+
+/-- info: 'CausalSet.CausalProfile.quadratic_identity' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms CausalSet.CausalProfile.quadratic_identity
+
+/-- info: 'CausalSet.CausalProfile.profileDistance_sq' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms CausalSet.CausalProfile.profileDistance_sq
+
+/-- info: 'CausalSet.CausalProfile.coefficientMatrix_det' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms CausalSet.CausalProfile.coefficientMatrix_det
+
+/-- info: 'CausalSet.CausalProfile.recovery_mul_coefficient' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms CausalSet.CausalProfile.recovery_mul_coefficient
+
+/-- info: 'CausalSet.CausalProfile.coefficientMatrix_isUnit' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms CausalSet.CausalProfile.coefficientMatrix_isUnit
+
+/-- info: 'CausalSet.CausalProfile.recover_vector' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms CausalSet.CausalProfile.recover_vector
+
+/-- info: 'CausalSet.CausalProfile.three_label_recovery' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms CausalSet.CausalProfile.three_label_recovery
+
+/-- info: 'CausalSet.CausalProfile.observations_characterize' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms CausalSet.CausalProfile.observations_characterize
+
+/-- info: 'CausalSet.CausalProfile.observations_eq_iff_components' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms CausalSet.CausalProfile.observations_eq_iff_components
+
+/-- info: 'CausalSet.CausalProfile.recover_A' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms CausalSet.CausalProfile.recover_A
+
+/-- info: 'CausalSet.CausalProfile.recover_B' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms CausalSet.CausalProfile.recover_B
+
+/-- info: 'CausalSet.CausalProfile.recover_C' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms CausalSet.CausalProfile.recover_C
+
+/-- info: 'CausalSet.CausalProfile.profileDistance_triangle' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms CausalSet.CausalProfile.profileDistance_triangle
+
+/-- info: 'CausalSet.CausalProfile.kernels_apply' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms CausalSet.CausalProfile.kernels_apply
+
+section CausalProfileExamples
+
+open MeasureTheory CausalSet.CausalProfile Matrix
+open scoped symmDiff
+
+local instance : MeasurableSpace (Fin 3) := ⊤
+
+def threePointRelation : CausalRelation (Fin 3) where
+  precedes := (· < ·)
+  irrefl := lt_irrefl
+  trans := lt_trans
+  measurable := (Set.to_countable _).measurableSet
+
+local notation "μ₃" => Measure.dirac (1 : Fin 3)
+
+theorem atomic_components : components μ₃ threePointRelation 0 2 = ![1, 1, 1] := by
+  ext i
+  fin_cases i <;>
+    norm_num [components, componentA, componentB, componentC, threePointRelation,
+      CausalRelation.past, CausalRelation.future, Measure.real, Measure.dirac_apply',
+      Set.mem_symmDiff]
+
+example : observedSquared μ₃ threePointRelation 0 2 = ![1, 1, 1] := by
+  rw [observedSquared_eq, atomic_components]
+  ext i
+  fin_cases i <;>
+    norm_num [coefficientMatrix, Matrix.mulVec, dotProduct, Fin.sum_univ_succ]
+
+example : recoveryMatrix *ᵥ observedSquared μ₃ threePointRelation 0 2 = ![1, 1, 1] := by
+  rw [three_label_recovery, atomic_components]
+
+example : LabelledCorrespondence.jointDistance
+    (kernels μ₃ threePointRelation) (kernels μ₃ threePointRelation) = 0 :=
+  LabelledCorrespondence.jointDistance_self _
+
+end CausalProfileExamples
