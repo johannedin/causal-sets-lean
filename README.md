@@ -55,6 +55,25 @@ on an empty carrier this follows Lean's total inverse convention, not a probabil
 This module does not construct a continuum operator or prove spectral convergence,
 a Cauchy bulk law, Sorkin–Johnston state convergence, entropy, or cutoff results.
 
+The finite Fourier/Cayley API extends this foundation with an exact relative-permutation
+reduction and diagonalization of the **one-coordinate sign operator**, not the spectrum
+of an arbitrary two-coordinate sum. Its conventions are
+`S[a,b] = sign(b-a)` and `M_N = -i S/(4N)`. Sorting ranks `u,v` gives `M_N` plus
+a reindexed copy whose entries are `M_N[ρ(a),ρ(b)]`, where `ρ = v ∘ u⁻¹`.
+
+For positive dimension `N = n+1`, the twisted shift acts by `(Zf)[0] = -f[N-1]`
+and `(Zf)[a+1] = f[a]`. It satisfies `Z^N = -I`. The explicit half-geometric
+sum is a two-sided inverse of `I-Z`, and the sign matrix obeys the corrected
+identity `S = -(I+Z)(I-Z)⁻¹`. The normalized vectors
+`v_k[a] = N^(-1/2) exp(i(2k+1)π(a+1)/N)`, indexed by `k : Fin N`, form an
+orthonormal basis. The shift eigenvalue is `exp(-i(2k+1)π/N)`; the `M_N`
+eigenvalue is `cot((2k+1)π/(2N))/(4N)`. Lean states the latter using
+`Complex.cot` at the real half-angle. The API supplies exact basis-indexed
+eigenvector identities, not a separate sorted-eigenvalue enumeration theorem.
+The reduction also permits the empty carrier; the Fourier construction uses `n+1`
+to enforce nonzero dimension. These deterministic identities imply no probabilistic
+spectral law, rigidity, continuum convergence, SJ-state convergence, entropy or cutoff result.
+
 The formalization **does not** establish faithful spacetime embeddings, dimension, sprinkling laws, physical volume, continuum convergence, Lorentzian metric reconstruction, or field dynamics. Additional geometric and probabilistic assumptions would be required.
 
 ## Reproducible verification
@@ -118,6 +137,12 @@ The GitHub workflow is a change-aware weekly checkpoint, with manual dispatch. O
 - `CausalSet.PauliJordan.normalizedIPauliJordan_isHermitian`: Hermitian symmetry after cardinality normalization.
 - `CausalSet.PauliJordan.pauliJordan_relabel`, `iPauliJordan_relabel`, and `normalizedIPauliJordan_relabel`: exact matrix reindexing under equivalences.
 - `CausalSet.PauliJordan.twoOrder_lt_iff`: the permutation-generated order's strict coordinate characterization.
+- `CausalSet.PauliJordan.signMatrix`, `signOperator`, and `signOperator_isHermitian`: the oriented sign matrix and its normalized Hermitian multiple.
+- `CausalSet.PauliJordan.normalizedIPauliJordan_coordinatePrecedes` and `normalizedIPauliJordan_relativePermutation`: the exact two-rank and sorted relative-permutation reductions.
+- `CausalSet.PauliJordan.twistedShift` and `twistedShift_mulVec_twistedFourierVector`: antiperiodic shift and its root-parametrized eigenvectors.
+- `CausalSet.PauliJordan.AntiperiodicFourier.root_pow`, `orthonormal_vec`, and `basis`: concrete half-integer roots and a complete orthonormal basis.
+- `CausalSet.PauliJordan.AntiperiodicFourier.shift_pow_vec`, `shift_pow_antiperiodic`, `one_sub_shift_mul_shiftInverse`, and `shiftInverse_mul_one_sub_shift`: exact powers, antiperiodicity and the two-sided inverse.
+- `CausalSet.PauliJordan.AntiperiodicFourier.signMatrix_eq_neg_sum_shift`, `signMatrix_cayley`, and `signOperator_mulVec_vec`: geometric sum, corrected Cayley identity and normalized cotangent eigenvalues.
 
 Abundance counting uses `Fintype` and `DecidableLT` in addition to `Preorder` and
 `LocallyFiniteOrder`; it requires neither antisymmetry nor `DecidableEq`.

@@ -19,6 +19,15 @@ This repository provides a reusable Lean 4 formalization of elementary causal-se
 
 ## Possible future extensions
 
+### Staged finite Fourier/Cayley contribution
+
+The current contribution adds exact relative-permutation reduction, an antiperiodic
+shift, its geometric-sum inverse and corrected Cayley identity, and a complete twisted
+Fourier basis with exact cotangent eigenvalues for the normalized one-coordinate sign
+operator. It remains **staged for independent exact-commit review and owner merge
+approval**, not a merged or released milestone. Move this item to implemented foundations
+only after the PR is actually merged. No probabilistic or continuum claim is included.
+
 The following are proposals, not accepted theorems or release requirements.
 
 ### Limits of reconstruction
@@ -54,11 +63,14 @@ Use local verification and owner-controlled releases rather than expensive hoste
 
 Possible later curation candidates, requiring separate scope and approval:
 
-1. Exact finite Pauli–Jordan Fourier/Cayley reduction.
-2. General Hermitian spectral infrastructure, with a separate provenance and maintenance
+1. General Hermitian spectral infrastructure, with a separate provenance and maintenance
    assessment; reusable results may ultimately belong in mathlib rather than here.
-3. Causal-profile algebra relating labelled kernels and indicator functions; this is a
+2. Finite-band and centered-Gram estimates, with explicit band and positivity conditions.
+3. Conditional deterministic spectral comparison, stating every remaining assumption and
+   keeping finite coefficient models distinct from continuum operators.
+4. Causal-profile algebra relating labelled kernels and indicator functions; this is a
    future formalization milestone, not an already implemented module.
-4. Later finite-band spectral comparisons, with explicit band, positivity and indexing hypotheses.
+5. Later probabilistic and continuum interfaces, only with their measure-theoretic,
+   normalization and geometric hypotheses formally established.
 
 These candidates are not release commitments and do not authorize new implementation.

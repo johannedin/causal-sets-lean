@@ -9,5 +9,7 @@ public import CausalSet.NonIdentifiability
 public import CausalSet.NonIdentifiabilityAntichain
 public import CausalSet.NonIdentifiabilityNonDual
 public import CausalSet.PauliJordan
+public import CausalSet.PauliJordanFourier
+public import CausalSet.PauliJordanFourierSpectrum
 public import CausalSet.RandomTwoOrder
 public import CausalSet.Transport
