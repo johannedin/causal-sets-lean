@@ -342,3 +342,144 @@ example :
   normalizedIPauliJordan_isHermitian _
 
 end PauliJordanExamples
+
+/-! ## Exact finite Fourier/Cayley representation -/
+
+/-- info: 'CausalSet.PauliJordan.signMatrix_transpose' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms CausalSet.PauliJordan.signMatrix_transpose
+
+/-- info: 'CausalSet.PauliJordan.signOperator_isHermitian' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms CausalSet.PauliJordan.signOperator_isHermitian
+
+/-- info: 'CausalSet.PauliJordan.normalizedIPauliJordan_coordinatePrecedes' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound] -/
+#guard_msgs in
+#print axioms CausalSet.PauliJordan.normalizedIPauliJordan_coordinatePrecedes
+
+/-- info: 'CausalSet.PauliJordan.normalizedIPauliJordan_relativePermutation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound] -/
+#guard_msgs in
+#print axioms CausalSet.PauliJordan.normalizedIPauliJordan_relativePermutation
+
+/-- info: 'CausalSet.PauliJordan.twistedShift_mulVec_twistedFourierVector' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound] -/
+#guard_msgs in
+#print axioms CausalSet.PauliJordan.twistedShift_mulVec_twistedFourierVector
+
+/-- info: 'CausalSet.PauliJordan.one_sub_mul_geom_sum_of_pow_eq_neg_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound] -/
+#guard_msgs in
+#print axioms CausalSet.PauliJordan.one_sub_mul_geom_sum_of_pow_eq_neg_one
+
+/-- info: 'CausalSet.PauliJordan.AntiperiodicFourier.root_pow' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms CausalSet.PauliJordan.AntiperiodicFourier.root_pow
+
+/-- info: 'CausalSet.PauliJordan.AntiperiodicFourier.root_injective' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms CausalSet.PauliJordan.AntiperiodicFourier.root_injective
+
+/-- info: 'CausalSet.PauliJordan.AntiperiodicFourier.orthonormal_vec' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms CausalSet.PauliJordan.AntiperiodicFourier.orthonormal_vec
+
+/-- info: 'CausalSet.PauliJordan.AntiperiodicFourier.shift_vec' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms CausalSet.PauliJordan.AntiperiodicFourier.shift_vec
+
+/-- info: 'CausalSet.PauliJordan.AntiperiodicFourier.shift_pow_vec' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms CausalSet.PauliJordan.AntiperiodicFourier.shift_pow_vec
+
+/-- info: 'CausalSet.PauliJordan.AntiperiodicFourier.shift_pow_antiperiodic' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound] -/
+#guard_msgs in
+#print axioms CausalSet.PauliJordan.AntiperiodicFourier.shift_pow_antiperiodic
+
+/-- info: 'CausalSet.PauliJordan.AntiperiodicFourier.sign_mulVec_vec' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms CausalSet.PauliJordan.AntiperiodicFourier.sign_mulVec_vec
+
+/-- info: 'CausalSet.PauliJordan.AntiperiodicFourier.signMatrix_eq_neg_sum_shift' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound] -/
+#guard_msgs in
+#print axioms CausalSet.PauliJordan.AntiperiodicFourier.signMatrix_eq_neg_sum_shift
+
+/-- info: 'CausalSet.PauliJordan.AntiperiodicFourier.eig_eq_I_mul_cot' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms CausalSet.PauliJordan.AntiperiodicFourier.eig_eq_I_mul_cot
+
+/-- info: 'CausalSet.PauliJordan.AntiperiodicFourier.signOperator_mulVec_vec' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound] -/
+#guard_msgs in
+#print axioms CausalSet.PauliJordan.AntiperiodicFourier.signOperator_mulVec_vec
+
+/-- info: 'CausalSet.PauliJordan.AntiperiodicFourier.one_sub_shift_mul_shiftInverse' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound] -/
+#guard_msgs in
+#print axioms CausalSet.PauliJordan.AntiperiodicFourier.one_sub_shift_mul_shiftInverse
+
+/-- info: 'CausalSet.PauliJordan.AntiperiodicFourier.shiftInverse_mul_one_sub_shift' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound] -/
+#guard_msgs in
+#print axioms CausalSet.PauliJordan.AntiperiodicFourier.shiftInverse_mul_one_sub_shift
+
+/-- info: 'CausalSet.PauliJordan.AntiperiodicFourier.signMatrix_cayley' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms CausalSet.PauliJordan.AntiperiodicFourier.signMatrix_cayley
+
+section PauliJordanFourierExamples
+
+open Matrix CausalSet.PauliJordan CausalSet.PauliJordan.AntiperiodicFourier
+
+-- Orientation: S has positive entries above the diagonal, negative below.
+example : signMatrix 2 0 1 = 1 := by norm_num [signMatrix, coordinateSign]
+example : signMatrix 2 1 0 = -1 := by norm_num [signMatrix, coordinateSign]
+
+example (f : Fin 3 → ℂ) :
+    (twistedShift 3 *ᵥ f) 0 = -f (Fin.last 2) :=
+  twistedShift_mulVec_zero 2 f
+
+example (f : Fin 3 → ℂ) (a : Fin 2) :
+    (twistedShift 3 *ᵥ f) a.succ = f a.castSucc :=
+  twistedShift_mulVec_succ 2 f a
+
+-- The smallest positive dimension and a two-dimensional case.
+example : twistedShift 1 ^ 1 = -(1 : Matrix (Fin 1) (Fin 1) ℂ) :=
+  shift_pow_antiperiodic 0
+
+example : twistedShift 2 ^ 2 = -(1 : Matrix (Fin 2) (Fin 2) ℂ) :=
+  shift_pow_antiperiodic 1
+
+example :
+    normalizedIPauliJordan
+      (coordinatePrecedes (Equiv.refl (Fin 2)) (Equiv.refl (Fin 2))) =
+        signOperator 2 + signOperator 2 := by
+  simpa using normalizedIPauliJordan_relativePermutation 2
+    (Equiv.refl (Fin 2)) (Equiv.refl (Fin 2))
+
+example : Orthonormal ℂ (vec 1) := orthonormal_vec 1
+
+example :
+    (signMatrix 2).map (algebraMap ℝ ℂ) =
+      -((1 + twistedShift 2) * shiftInverse 1) :=
+  signMatrix_cayley 1
+
+example :
+    signOperator 2 *ᵥ ⇑(vec 1 (0 : Fin 2)) =
+      (Complex.cot ((angle 1 (0 : Fin 2) : ℂ) / 2) / (4 * (1+1 : ℂ))) •
+        ⇑(vec 1 (0 : Fin 2)) :=
+  by simpa using signOperator_mulVec_vec 1 (0 : Fin 2)
+
+end PauliJordanFourierExamples
