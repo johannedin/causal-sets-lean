@@ -285,3 +285,60 @@ example :
     ∑ σ : Equiv.Perm (Fin 4), bdCombination2 (TwoOrder σ) = 24 := by decide +kernel
 
 end RandomTwoOrderExamples
+
+/-! ## Finite Pauli–Jordan foundations -/
+
+/-- info: 'CausalSet.PauliJordan.twoOrder_sign_identity' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms CausalSet.PauliJordan.twoOrder_sign_identity
+
+/-- info: 'CausalSet.PauliJordan.pauliJordan_transpose' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms CausalSet.PauliJordan.pauliJordan_transpose
+
+/-- info: 'CausalSet.PauliJordan.iPauliJordan_isHermitian' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms CausalSet.PauliJordan.iPauliJordan_isHermitian
+
+/-- info: 'CausalSet.PauliJordan.normalizedIPauliJordan_isHermitian' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms CausalSet.PauliJordan.normalizedIPauliJordan_isHermitian
+
+/-- info: 'CausalSet.PauliJordan.pauliJordan_relabel' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms CausalSet.PauliJordan.pauliJordan_relabel
+
+/-- info: 'CausalSet.PauliJordan.iPauliJordan_relabel' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms CausalSet.PauliJordan.iPauliJordan_relabel
+
+/-- info: 'CausalSet.PauliJordan.normalizedIPauliJordan_relabel' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms CausalSet.PauliJordan.normalizedIPauliJordan_relabel
+
+/-- info: 'CausalSet.PauliJordan.twoOrder_lt_iff' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms CausalSet.PauliJordan.twoOrder_lt_iff
+
+section PauliJordanExamples
+
+open CausalSet.PauliJordan
+
+-- Two points with the same increasing rank in both coordinates.
+example :
+    2 * relationSign (coordinatePrecedes (id : Fin 2 → Fin 2) id) 0 1 =
+      coordinateSign (0 : Fin 2) 1 + coordinateSign (0 : Fin 2) 1 :=
+  twoOrder_sign_identity id id Function.injective_id Function.injective_id 0 1
+
+example : relationSign (coordinatePrecedes (id : Fin 2 → Fin 2) id) 0 1 = -1 := by
+  decide
+
+example :
+    (iPauliJordan (coordinatePrecedes (id : Fin 2 → Fin 2) id)).IsHermitian :=
+  iPauliJordan_isHermitian _
+
+example :
+    (normalizedIPauliJordan (coordinatePrecedes (id : Fin 2 → Fin 2) id)).IsHermitian :=
+  normalizedIPauliJordan_isHermitian _
+
+end PauliJordanExamples

@@ -44,6 +44,17 @@ labelled kernels, zero joint distance is equivalent to a bijection preserving ev
 kernel. This is abstract metric infrastructure: it does not identify physical spacetimes,
 establish geometric reconstruction, or supply statistical convergence rates.
 
+`CausalSet.PauliJordan` provides a finite matrix foundation: signed antisymmetrization
+of any decidable relation, the real matrix `Δ = relationSign / 2`, the Hermitian
+matrix `iΔ`, and its cardinality-normalized form. For two injective coordinates in
+linear orders, twice the precedence sign equals the sum of the coordinate signs.
+Relabelling by an equivalence reindexes each matrix. Hermitian symmetry needs only
+a decidable relation, not order axioms; the coordinate identity requires both
+injectivity hypotheses. Normalization uses the inverse of the finite cardinality;
+on an empty carrier this follows Lean's total inverse convention, not a probability law.
+This module does not construct a continuum operator or prove spectral convergence,
+a Cauchy bulk law, Sorkin–Johnston state convergence, entropy, or cutoff results.
+
 The formalization **does not** establish faithful spacetime embeddings, dimension, sprinkling laws, physical volume, continuum convergence, Lorentzian metric reconstruction, or field dynamics. Additional geometric and probabilistic assumptions would be required.
 
 ## Reproducible verification
@@ -101,6 +112,12 @@ The GitHub workflow is a change-aware weekly checkpoint, with manual dispatch. O
 - `LabelledCorrespondence.jointDistance_symm` and `jointDistance_triangle`: symmetry and the triangle inequality.
 - `LabelledCorrespondence.Preserves`, `jointDistance_congr_left`, and `jointDistance_congr_right`: preservation and invariance under label-preserving equivalences.
 - `LabelledCorrespondence.jointDistance_eq_zero_iff_exists_preserving_equiv`: the compact zero-distance characterization under explicit finite-label and maximum-metric hypotheses.
+- `CausalSet.PauliJordan.relationSign`, `coordinatePrecedes`, and `coordinateSign`: relation and coordinate signs.
+- `CausalSet.PauliJordan.twoOrder_sign_identity`: the division-free sign identity for injective coordinates in linear orders.
+- `CausalSet.PauliJordan.pauliJordan_transpose` and `iPauliJordan_isHermitian`: real antisymmetry and complex Hermitian symmetry.
+- `CausalSet.PauliJordan.normalizedIPauliJordan_isHermitian`: Hermitian symmetry after cardinality normalization.
+- `CausalSet.PauliJordan.pauliJordan_relabel`, `iPauliJordan_relabel`, and `normalizedIPauliJordan_relabel`: exact matrix reindexing under equivalences.
+- `CausalSet.PauliJordan.twoOrder_lt_iff`: the permutation-generated order's strict coordinate characterization.
 
 Abundance counting uses `Fintype` and `DecidableLT` in addition to `Preorder` and
 `LocallyFiniteOrder`; it requires neither antisymmetry nor `DecidableEq`.
