@@ -103,8 +103,8 @@ statistical convergence and reconstruction rates are outside this module.
 
 ## Reproducible verification
 
-The finite Pauli–Jordan foundation and Fourier/Cayley API described above are on
-`main`, following PRs #17 and #19, but are not included in the last tagged release
+The finite Pauli–Jordan foundation, Fourier/Cayley API and L3 causal-profile algebra are on
+`main`, following PRs #17, #19 and #22, but are not included in the last tagged release
 v0.2.0. See [`docs/ROADMAP.md`](docs/ROADMAP.md) for availability and evidence-status distinctions.
 
 The project pins Lean and mathlib to v4.35.0 and commits its dependency manifest. From a clean checkout with Lean/Elan and Git installed:

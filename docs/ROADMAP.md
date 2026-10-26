@@ -16,12 +16,14 @@ This repository provides a reusable Lean 4 formalization of elementary causal-se
 - [x] Joint correspondence distance for finite labelled pseudometric families, including symmetry, the triangle inequality, equivalence invariance, and a compact zero-distance characterization under explicit maximum-metric hypotheses.
 - [x] Finite Pauli–Jordan relation-sign matrices: the injective two-coordinate sign identity, real antisymmetry, Hermitian imaginary multiple, cardinality normalization, and relabelling invariance.
 - [x] Exact finite relative-permutation and Fourier/Cayley representation: antiperiodic shift, two-sided geometric inverse, complete twisted Fourier basis and cotangent eigenvalue identities for the normalized one-coordinate sign operator.
+- [x] L3 causal-profile algebra: measurable strict causal relations, genuine real L² past/future profiles, A/B/C expansion, three-label recovery and unsquared pseudometric kernels integrated with LabelledCorrespondence.
 - [x] Pinned Lean/mathlib environment, local proof and axiom audits, and a change-aware weekly/manual verification workflow.
 
 ## Availability and evidence status
 
 The finite Pauli–Jordan foundation and Fourier/Cayley modules are implemented and
-kernel-verified on `main` (PRs #17 and #19); neither is included in the last tagged
+kernel-verified on `main` (PRs #17 and #19). L3 causal-profile algebra is also implemented
+and publicly kernel-verified (PR #22). None of these additions is included in the last tagged
 release, v0.2.0. The implemented list describes `main`, not the contents of every tag.
 Consult the changelog and the selected tag for release-specific availability.
 
@@ -73,8 +75,8 @@ Possible later curation candidates, requiring separate scope and approval:
 2. Finite-band and centered-Gram estimates, with explicit band and positivity conditions.
 3. Conditional deterministic spectral comparison, stating every remaining assumption and
    keeping finite coefficient models distinct from continuum operators.
-4. Causal-profile algebra relating labelled kernels and indicator functions; this is a
-   future formalization milestone, not an already implemented module.
+4. L4 copula geometry, twin quotients, completion and chronology recovery; these are not
+   consequences of the implemented L3 algebra. L5 identifiability remains separate and unformalized.
 5. Later probabilistic and continuum interfaces, only with their measure-theoretic,
    normalization and geometric hypotheses formally established.
 
