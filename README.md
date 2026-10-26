@@ -25,7 +25,7 @@ For a permutation `σ : Equiv.Perm (Fin N)`, `CausalSet.TwoOrder σ` intersects 
 order on positions with the order of their images under `σ`. The library proves exact sums
 over all `N!` permutations for interval abundances, links, strict relations, and the
 two-dimensional Benincasa--Dowker interval combination. These are finite combinatorial
-identities; no probability space is defined in Lean.
+identities; they do not require a probability-space model.
 
 The **fixed-cardinality diamond correspondence** is an unformalized sampling assumption:
 condition a homogeneous Poisson sprinkling into a two-dimensional Minkowski Alexandrov
@@ -75,6 +75,31 @@ to enforce nonzero dimension. These deterministic identities imply no probabilis
 spectral law, rigidity, continuum convergence, SJ-state convergence, entropy or cutoff result.
 
 The formalization **does not** establish faithful spacetime embeddings, dimension, sprinkling laws, physical volume, continuum convergence, Lorentzian metric reconstruction, or field dynamics. Additional geometric and probabilistic assumptions would be required.
+
+## L² causal-profile algebra
+
+`CausalSet.CausalProfile` starts with an explicitly measurable probability space and
+a jointly measurable, irreflexive, transitive relation. Joint measurability supplies
+measurable strict past and future sections. Actual indicator functions are placed in
+mathlib's real `Lp ℝ 2 μ`, hence treated up to almost-everywhere equality; no
+atomlessness, smooth manifold or copula assumption is imposed.
+
+The profile is `f_(r,x) = -α_r 1_P(x) + β_r 1_F(x)`, where
+`α_r=(1-r)/2` and `β_r=(1+r)/2`. The API proves the exact identity
+`D_r(x,y)^2 = α_r^2 A + β_r^2 B + 2α_rβ_r C`, with
+`A=μ(P(x)△P(y))`, `B=μ(F(x)△F(y))`, and
+`C=μ(P(x)∩F(y))+μ(F(x)∩P(y))`. In L², `C` is the negative inner product of
+the past and future differences. Strictness makes same-point past/future intersections empty.
+
+The labels `-1/2,0,1/2` give coefficient matrix
+`(1/16)[[9,1,6],[4,4,8],[1,9,6]]`, determinant `-1/16`, and inverse
+`[[3,-3,1],[1,-3,3],[-2,5,-2]]`. `three_label_recovery` and
+`observations_eq_iff_components` prove recovery and uniqueness, including comparisons
+between different probability spaces. `kernels` supplies the existing
+`LabelledCorrespondence.KernelFamily (Fin 3) X` with **unsquared** L² distances.
+No claim is made that squared distance obeys a triangle inequality or that these
+kernels generate an ambient topology. Copula geometry, completion, identifiability,
+statistical convergence and reconstruction rates are outside this module.
 
 ## Reproducible verification
 
@@ -143,6 +168,11 @@ The GitHub workflow is a change-aware weekly checkpoint, with manual dispatch. O
 - `CausalSet.PauliJordan.AntiperiodicFourier.root_pow`, `orthonormal_vec`, and `basis`: concrete half-integer roots and a complete orthonormal basis.
 - `CausalSet.PauliJordan.AntiperiodicFourier.shift_pow_vec`, `shift_pow_antiperiodic`, `one_sub_shift_mul_shiftInverse`, and `shiftInverse_mul_one_sub_shift`: exact powers, antiperiodicity and the two-sided inverse.
 - `CausalSet.PauliJordan.AntiperiodicFourier.signMatrix_eq_neg_sum_shift`, `signMatrix_cayley`, and `signOperator_mulVec_vec`: geometric sum, corrected Cayley identity and normalized cotangent eigenvalues.
+- `CausalSet.CausalProfile.CausalRelation`, `indicator_ae`, and `profile_ae`: measurable strict relations and genuine a.e. L² profiles.
+- `CausalSet.CausalProfile.componentA_eq`, `componentB_eq`, `componentC_eq`, and `profileDistance_sq`: measure-based components, norm/inner-product correspondence and quadratic expansion.
+- `CausalSet.CausalProfile.coefficientMatrix_det`, `coefficientMatrix_isUnit`, `recover_vector`, and `three_label_recovery`: verified matrix inverse and simultaneous recovery.
+- `CausalSet.CausalProfile.recover_A`, `recover_B`, `recover_C`, and `observations_eq_iff_components`: explicit formulas and uniqueness across probability spaces.
+- `CausalSet.CausalProfile.profileKernel` and `kernels`: unsquared-distance pseudometric kernels, without an ambient-topology assertion.
 
 Abundance counting uses `Fintype` and `DecidableLT` in addition to `Preorder` and
 `LocallyFiniteOrder`; it requires neither antisymmetry nor `DecidableEq`.
@@ -170,8 +200,9 @@ two-dimensional diamonds*, Zenodo (2026), version 1.0.
 
 The preprint develops statistical and geometric results beyond this library. The Lean code
 formalizes the preprint's compact labelled zero-distance lemma, with explicit nonempty-label
-and nonempty-space hypotheses. It does **not** formalize any other result in the preprint,
-including its sampling results or reconstruction theorems.
+and nonempty-space hypotheses, and its L² component identity and three-label algebra.
+It does **not** formalize the preprint's sampling results, copula geometry, identifiability
+or reconstruction theorems.
 
 For software citation metadata, see [`CITATION.cff`](CITATION.cff). Release history and the
 scope of each version are recorded in [`CHANGELOG.md`](CHANGELOG.md).
